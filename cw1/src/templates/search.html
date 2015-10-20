@@ -1,4 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
-  <p>Searching page</p>  
+  <p>Searching page</p>
+    <ul>
+      {% for x in films %}
+        <li>{{ x.title }}</li>
+      {% endfor %}  
+    </ul>
 {% endblock%}}

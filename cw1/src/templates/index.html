@@ -1,4 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
   <p>Index of the web-app.</p>  
+  <p>Most popular films:</p>
+    <ul>
+      {% for x in films %}
+        <li>{{ x.title }}</li>
+      {% endfor %}
+    </ul>
 {% endblock%}}

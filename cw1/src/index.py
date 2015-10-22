@@ -36,7 +36,10 @@ def index():
     return redirect(url_for('search', searched=name))
   else:
     mostPopFilms = Movie.mostpopular()
-    return render_template('index.html', films = mostPopFilms[0:20])
+    upcomingFilms = Movie.upcoming()
+    topRatFilms = Movie.toprated()
+    return render_template('indexTest.html', filmsPop = mostPopFilms[0:6],
+    filmsUpc = upcomingFilms[0:6], filmsTop = topRatFilms[0:6])
 
 @app.route('/movies/')
 def moviesPage():

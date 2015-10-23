@@ -1,9 +1,65 @@
 {% extends "base.html" %}
 {% block content %}
-  <p>Searching page</p>
-    <ul>
-      {% for x in films %}
-        <li>{{ x.title }}</li>
-      {% endfor %}  
-    </ul>
-{% endblock%}}
+
+<div class="content">
+	<form action="" method="post" name="form" id="reservation-form">
+		<fieldset>
+			<div id="search">
+				<label for="name">Search films</label>
+				<input type="text" name="searchedName" id="name"/>
+				<input type="submit" name="submitFilm" id="submit"/>
+			</div>
+		</fieldset>
+	</form>
+	<p>&nbsp;</p>
+	<p>&nbsp;</p>
+	<div class="wrap">
+		<div class="content-top">
+			<h3>Films</h3>
+			
+				{% for x in films %}
+					<div class="col_1_of_4 span_1_of_4">
+						<div class="imageRow">
+								<div class="single">
+									{% if x.poster is not none %}
+										<center><img src="{{ x.poster.geturl("w154") }}" alt="" /></center>
+									{% else %}
+										<center><img src="/static/images/noPosterAvailable.png" alt="" /></center>
+									{% endif %}
+								</div>
+								<div class="movie-text">
+									<h4 class="h-text" align="justify"><a>{{ x.title }}</a></h4>
+									{% if x.youtube_trailers|length > 0 %}
+										<a href="{{x.youtube_trailers[0].geturl()}}" class="link">Trailer</a>
+									{% else %}
+										<a>Trailer</a>
+									{% endif %}
+									{% if x.homepage != "" %}
+										<a href="{{x.homepage}}" class="link">Info</a>
+									{% else %}
+										<a>Info</a>
+									{% endif %}
+									<a href="/{{x.title}}/cast" class="link">Cast</a>
+									{% if x.overview != "" %}
+										<p class="h-para"> {{ x.overview|truncate(100, true) }} </p>
+									{% else %}
+										<p class="h-para"> There is no description for this film. You can search it on the Internet to get more information. </p>
+									{% endif %}
+								</div>
+						</div>
+					</div>
+					{% if loop.index%4==0 %}
+						<p>&nbsp;</p>
+						<p>&nbsp;</p>
+						<p>&nbsp;</p>
+						<p>&nbsp;</p>						
+						<p>&nbsp;</p>
+					{% endif %}
+				{% endfor %}
+				
+		</div>
+	</div>
+	<div class="clear"></div>		
+</div>
+	
+{% endblock %}

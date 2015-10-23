@@ -1,7 +1,8 @@
 import ConfigParser
 
-from flask import Flask, render_template, request, redirect, url_for
-from tmdb3 import set_key, searchMovie, Movie
+from flask import Flask, render_template, request, redirect, url_for, abort
+from tmdb3 import set_key, searchMovie, Movie, searchPerson
+from random import randint
 
 set_key('80c7be1cb23c1e1ce5e409bb977ed400')
 
@@ -29,30 +30,63 @@ def init(app):
   except:
     print "Could not read configs from: ", config_location
 
-@app.route('/', methods=['POST','GET'])
+@app.route('/')
 def index():
-  if request.method == 'POST':
-    name = request.form['name']
-    return redirect(url_for('search', searched=name))
-  else:
-    mostPopFilms = Movie.mostpopular()
-    upcomingFilms = Movie.upcoming()
-    topRatFilms = Movie.toprated()
-    return render_template('indexTest.html', filmsPop = mostPopFilms[0:6],
-    filmsUpc = upcomingFilms[0:6], filmsTop = topRatFilms[0:6])
+	mostPopFilms = Movie.mostpopular()
+	upcomingFilms = Movie.upcoming()
+	topRatFilms = Movie.toprated()
+	return render_template('index.html', filmsPop = mostPopFilms[0:6],
+	filmsUpc = upcomingFilms[0:6], filmsTop = topRatFilms[0:6])
 
-@app.route('/movies/')
-def moviesPage():
-  return render_template('movies.html')
+@app.route('/search/', methods=['GET'])
+@app.route('/search/<searched>', methods=['GET'])
+def completeSearchFilm(searched):
+  searchedMovies = searchMovie(searched)
+  return render_template('search.html', films=searchedMovies)
 
-@app.route('/search/', methods=['POST','GET'])
-@app.route('/search/<searched>', methods=['POST','GET'])
-def search(searched):
-  if request.method == 'POST':
-    name = request.form['name']
-    return redirect(url_for('search', searched=name))
-  films = searchMovie(searched)
-  return render_template('search.html', films=films)
+@app.route('/', methods=['POST'])
+@app.route('/search/', methods=['POST'])
+@app.route('/search/<searched>', methods=['POST'])
+def searchFilm(searched=None, film=None):
+  name = request.form['searchedName']
+  return redirect(url_for('completeSearchFilm', searched=name))
+  
+@app.route('/search/actor/', methods=['GET'])
+@app.route('/search/actor/<searched>', methods=['GET'])
+def completeSearchActor(searched):
+  searchedActors = searchPerson(searched)
+  return render_template('searchActor.html', actors=searchedActors)
+
+@app.route('/<film>/cast', methods=['POST'])
+@app.route('/people/', methods=['POST'])
+def searchActor(film=None):
+  name = request.form['searchedActor']
+  return redirect(url_for('completeSearchActor', searched=name))
+  
+@app.route('/<film>/cast')
+def filmCast(film):
+	film = searchMovie(film)[0]
+	castFilm = film.cast
+	return render_template('filmCast.html', film=film, people=castFilm)
+ 
+@app.route('/about/')
+def about():
+	return render_template('about.html')
+	
+@app.route('/people/', methods=['GET'])
+def people():
+	mostPopFilm = Movie.mostpopular()[0:6]
+	randNumber = randint(0,5)
+	castFilm = mostPopFilm[randNumber].cast
+	return render_template('people.html', film=mostPopFilm[randNumber], people=castFilm)
+  
+@app.errorhandler(404)
+def page_not_found(error):
+  return render_template('404.html')
+  
+@app.route("/force404/")
+def force404():
+  abort(404)
 
 if __name__ == '__main__':
   init(app)

@@ -1,18 +1,77 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE HTML>
 <html>
 <head>
-  <title>Film catalogue</title>
+<title>FilmsUp Now</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css" media="all" />
+<link rel="stylesheet" href="{{url_for('static', filename='css/flexslider.css')}}" type="text/css" media="all" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<script src="{{url_for('static', filename='js/modernizr.js')}}"></script>
+<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js'></script>
+<script src='{{url_for('static', filename='js/jquery.color-RGBa-patch.js')}}'></script>
+<script src='{{url_for('static', filename='js/example.js')}}'></script>
+<!-- jQuery -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+ <!-- FlexSlider -->
+  <script defer src="{{url_for('static', filename='js/jquery.flexslider.js')}}"></script>
+  <script type="text/javascript">
+    $(function(){
+      SyntaxHighlighter.all();
+    });
+    $(window).load(function(){
+      $('.flexslider').flexslider({
+        animation: "slide",
+        start: function(slider){
+          $('body').removeClass('loading');
+        }
+      });
+    });
+  </script>
+  <!-- DC Tabs CSS -->
+<link type="text/css" rel="stylesheet" href="http://www.dreamtemplate.com/dreamcodes/tabs/css/tsc_tabs.css" />
+ <!-- jQuery Library (skip this step if already called on page ) -->
+<script type="text/javascript" src="http://www.dreamtemplate.com/dreamcodes/jquery.min.js"></script> <!-- (do not call twice) -->
+ <!-- DC Tabs JS -->
+<!--<script type="text/javascript" src="http://www.dreamtemplate.com/dreamcodes/tabs/js/tsc_tabs.js"></script>-->
+<link rel="stylesheet" href="{{url_for('static', filename='css/tsc_tabs.css')}}" type="text/css" media="all" />
 </head>
 <body>
-  <h1>Best film web-app ever</h1>
-  <h4>By Sergio Fernandez Rodriguez (40220468)</h2>
+<div class="header">
+	<div class="header-top">
+		<div class="wrap" style="height: 100px">
+			  <div class="nav-wrap">
+					<ul class="group" id="example-one">
+			           <li class="current_page_item"><a href="/">Home</a></li>
+					   <li><a href="/people">People</a></li>
+			        </ul>
+			  </div>
+   		</div>
+    </div>
+<div class="block">
+	<div class="wrap" style="height: 120px">
+		<div class="h-logo">
+			<a href="/"><img src="{{url_for('static', filename='images/logo.png')}}" alt=""/></a>
+		</div>
+			
+      </div>
+</div>
 
-  <form action="" method="post" name="form=>
-    <label for="name">Search</label>
-    <input type="text" name="name" id="name"/>
-    <input type="submit" name="submit" id="submit"/>
-  </form>
 
-  {% block content %} {% endblock %}
+{%block content %} {% endblock %}
 
+
+<div class="footer-bottom">
+	<div class="wrap">
+		<div class="copy">
+			<center><p>Advanced Web Technologies | Sergio Fernandez Rodriguez (40220468)</p></center>
+		</div>
+ 	</div>
+</div>
 </body>
 </html>

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="content">
+	<div class="wrap">
+		<div class="content-top">
+			<form action="" method="post" name="form" id="reservation-form">
+					<center><div id="search">
+						<label for="name">Search people</label>
+						<input type="text" name="searchedActor" id="name"/>
+						<input type="submit" name="submitActor" id="submit"/>
+					</div></center>
+            </form>
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+			<h3>Cast of {{ film.title }}</h3>
+			
+				{% for x in people %}
+					<div class="col_1_of_4 span_1_of_4">
+						<div class="imageRow">
+								<div class="single">
+									{% if x.profile is not none %}
+										<center><img src="{{ x.profile.geturl("w185") }}" alt="" /></center>
+									{% else %}
+										<center><img src="/static/images/noPosterAvailable.png" alt="" /></center>
+									{% endif %}
+								</div>
+								<div class="movie-text">
+									<h4 class="h-text" align="center"><a href="https://www.google.co.uk/search?q={{x.name}}" class="link">{{ x.name }}</a></h4>
+									{% if x.biography != "" %}
+										<p class="h-para"> {{ x.biography|truncate(100, true) }} </p>
+									{% else %}
+										<p class="h-para"> There is no biography for this person. You can search it on the Internet to get more information. </p>
+									{% endif %}
+								</div>
+						</div>
+					</div>
+					{% if loop.index%4==0 %}
+						<p>&nbsp;</p>
+						<p>&nbsp;</p>
+						<p>&nbsp;</p>
+						<p>&nbsp;</p>
+					{% endif %}
+				{% endfor %}
+				
+		</div>
+	</div>
+	<div class="clear"></div>		
+</div>
+	
+{% endblock %}

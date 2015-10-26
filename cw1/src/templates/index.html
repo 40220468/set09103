@@ -2,102 +2,10 @@
 {% block content %}
 
 <div class="content">
-	<form action="" method="post" name="form" id="reservation-form">
-		<fieldset>
-			<div id="search">
-				<label for="name">Search films</label>
-				<input type="text" name="searchedName" id="name"/>
-				<input type="submit" name="submitFilm" id="submit"/>
-			</div>
-		</fieldset>
-	</form>
-	<p>&nbsp;</p>
-	<p>&nbsp;</p>
-	<div class="wrap" style="height: 700px">
-		<div class="listview_1_of_3 images_1_of_3">
-			<h3>Most Popular</h3>
-			{% for x in range(0, 3) %}
-			<div class="middle-list">
-				{% for y in range(0, 2) %}
-				<div class="listimg{{ y+1 }}">
-					{% if filmsPop[2*x+y].poster is not none %}
-						<img src="{{filmsPop[2*x+y].poster.geturl("w92")}}" alt=""/>
-					{% endif %} 
-						<p>{{filmsPop[2*x+y].title}}</p>
-					{% if filmsPop[2*x+y].youtube_trailers|length > 0 %}
-						<a href="{{filmsPop[2*x+y].youtube_trailers[0].geturl()}}" class="link">Trailer</a>
-					{% else %}
-						<a>Trailer</a>
-					{% endif %}
-					{% if filmsPop[2*x+y].homepage != "" %}
-						<a href="{{filmsPop[2*x+y].homepage}}" class="link">Info</a>
-					{% else %}
-						<a>Info</a>
-					{% endif %}
-					<a href="/{{filmsPop[2*x+y].title}}/cast" class="link">Cast</a>
-				</div>
-				{% endfor %}
-				<div class="clear"></div>
-			</div>
-			{% endfor %}
-		</div>	
-		
-		<div class="listview_1_of_3 images_1_of_3">
-			<h3>Upcoming</h3>
-			{% for x in range(0, 3) %}
-			<div class="middle-list">
-				{% for y in range(0, 2) %}
-				<div class="listimg{{ y+1 }}">
-					{% if filmsUpc[2*x+y].poster is not none %}
-						<img src="{{filmsUpc[2*x+y].poster.geturl("w92")}}" alt=""/>
-					{% endif %} 
-						<p>{{filmsUpc[2*x+y].title}}</p>
-					{% if filmsUpc[2*x+y].youtube_trailers|length > 0 %}
-						<a href="{{filmsUpc[2*x+y].youtube_trailers[0].geturl()}}" class="link">Trailer</a>
-					{% else %}
-						<a>Trailer</a>
-					{% endif %}
-					{% if filmsUpc[2*x+y].homepage != "" %}
-						<a href="{{filmsUpc[2*x+y].homepage}}" class="link">Info</a>
-					{% else %}
-						<a>Info</a>
-					{% endif %}
-					<a href="/{{filmsUpc[2*x+y].title}}/cast" class="link">Cast</a>
-				</div>
-				{% endfor %}
-				<div class="clear"></div>
-			</div>
-			{% endfor %}
-		</div>		
-
-		<div class="listview_1_of_3 images_1_of_3">
-			<h3>Top Rated</h3>
-			{% for x in range(0, 3) %}
-			<div class="middle-list">
-				{% for y in range(0, 2) %}
-				<div class="listimg{{ y+1 }}">
-					{% if filmsTop[2*x+y].poster is not none %}
-						<img src="{{filmsTop[2*x+y].poster.geturl("w92")}}" alt=""/>
-					{% endif %} 
-						<p>{{filmsTop[2*x+y].title}}</p>
-					{% if filmsTop[2*x+y].youtube_trailers|length > 0 %}
-						<a href="{{filmsTop[2*x+y].youtube_trailers[0].geturl()}}" class="link">Trailer</a>
-					{% else %}
-						<a>Trailer</a>
-					{% endif %}
-					{% if filmsTop[2*x+y].homepage != "" %}
-						<a href="{{filmsTop[2*x+y].homepage}}" class="link">Info</a>
-					{% else %}
-						<a>Info</a>
-					{% endif %}
-					<a href="/{{filmsTop[2*x+y].title}}/cast" class="link">Cast</a>
-				</div>
-				{% endfor %}
-				<div class="clear"></div>
-			</div>
-			{% endfor %}
-		</div>
-	</div>		
+	<div class="wrap">
+    <center><h1>You can search films or people clicking on the top menu
+    ;)</h1></center>
+  </div>		
 </div>
 
 {% endblock %}

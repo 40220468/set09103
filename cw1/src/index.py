@@ -32,55 +32,56 @@ def init(app):
 
 @app.route('/')
 def index():
+  return render_template('index.html')
+
+@app.route('/films/')
+def films():
 	mostPopFilms = Movie.mostpopular()
 	upcomingFilms = Movie.upcoming()
 	topRatFilms = Movie.toprated()
-	return render_template('index.html', filmsPop = mostPopFilms[0:6],
+	return render_template('films.html', filmsPop = mostPopFilms[0:6],
 	filmsUpc = upcomingFilms[0:6], filmsTop = topRatFilms[0:6])
 
-@app.route('/search/', methods=['GET'])
-@app.route('/search/<searched>', methods=['GET'])
+@app.route('/films/search/', methods=['GET'])
+@app.route('/films/search/<searched>', methods=['GET'])
 def completeSearchFilm(searched):
   searchedMovies = searchMovie(searched)
   return render_template('search.html', films=searchedMovies)
 
-@app.route('/', methods=['POST'])
-@app.route('/search/', methods=['POST'])
-@app.route('/search/<searched>', methods=['POST'])
+@app.route('/films/', methods=['POST'])
+@app.route('/films/search/', methods=['POST'])
+@app.route('/films/search/<searched>', methods=['POST'])
 def searchFilm(searched=None, film=None):
   name = request.form['searchedName']
   return redirect(url_for('completeSearchFilm', searched=name))
-  
-@app.route('/search/actor/', methods=['GET'])
-@app.route('/search/actor/<searched>', methods=['GET'])
+
+@app.route('/people/search/', methods=['GET'])
+@app.route('/people/search/<searched>', methods=['GET'])
 def completeSearchActor(searched):
   searchedActors = searchPerson(searched)
   return render_template('searchActor.html', actors=searchedActors)
 
-@app.route('/<film>/cast', methods=['POST'])
+@app.route('/films/<film>/cast', methods=['POST'])
 @app.route('/people/', methods=['POST'])
 def searchActor(film=None):
   name = request.form['searchedActor']
   return redirect(url_for('completeSearchActor', searched=name))
-  
-@app.route('/<film>/cast')
+
+@app.route('/films/<film>/cast')
 def filmCast(film):
 	film = searchMovie(film)[0]
 	castFilm = film.cast
 	return render_template('filmCast.html', film=film, people=castFilm)
- 
-@app.route('/about/')
-def about():
-	return render_template('about.html')
-	
+
 @app.route('/people/', methods=['GET'])
 def people():
 	mostPopFilm = Movie.mostpopular()[0:6]
 	randNumber = randint(0,5)
 	castFilm = mostPopFilm[randNumber].cast
-	return render_template('people.html', film=mostPopFilm[randNumber], people=castFilm)
-  
+	return render_template('people.html', film=mostPopFilm[randNumber],
+  people=castFilm)
 @app.errorhandler(404)
+
 def page_not_found(error):
   return render_template('404.html')
   

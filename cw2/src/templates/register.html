@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header class="intro-header" style="background-image: url('img/about-bg.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="page-heading">
+                        <h1>Register</h1>
+                        <hr class="small">
+                        <span class="subheading">Become part of blogABLE!</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+   <div class="container">
+		<div class="row">
+			<div class="col-sm-6 col-sm-offset-3 form-box">
+				<form name="register_form" action ="" method ="post">
+					<div class="well well-sm"><strong><span class="glyphicon glyphicon-asterisk"></span>Required Field</strong></div>
+					<div class="form-group">
+						<label for="InputName">Enter Username</label>
+						<div class="input-group">
+							<input type="text" class="form-control" name="InputUsername" id="InputUsername" placeholder="Enter Username" required>
+							<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="InputEmail">Enter Email</label>
+						<div class="input-group">
+							<input type="email" class="form-control" id="InputEmailFirst" name="InputEmail" placeholder="Enter Email" required>
+							<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="InputEmail">Enter Password</label>
+						<div class="input-group">
+							<input type="password" class="form-control" id="InputPassword" name="InputPassword" placeholder="Enter Password" required>
+							<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+						</div>
+					</div>
+					<button type="submit" name="submit" id="submit" value="Register" class="btn btn-info pull-right"> 
+						Register
+					</button>
+				</form> 
+			</div>
+		</div>
+    </div>
+
+    <hr>
+
+{% endblock %}

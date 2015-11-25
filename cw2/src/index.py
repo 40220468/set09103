@@ -112,7 +112,7 @@ def login():
 		if check_auth(user, pw):
 				session['logged_in'] = True
 				session['name'] = user
-				return redirect(url_for('.root'))
+				return redirect(url_for('loadUserBlog', wantedUser=user))
 		else:
 				flash("Incorrect user or password")
 				return render_template('login.html', session=session)

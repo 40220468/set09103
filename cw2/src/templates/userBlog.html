@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header class="intro-header" style="background-image: url('{{ url_for('static', filename='img/home-bg.jpg') }}')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="site-heading">
+                        <h1>{{ user }}</h1>
+                        <hr class="small">
+                        <span class="subheading">personal blogABLE of {{ user }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+	
+	 <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+			
+				<!-- for x in range((blogables|length)-1, -1, -1) %} -->
+				{% for x in range((blogables|length)-1 - 1*(pageNum-1), (blogables|length)-1 - 1*pageNum, -1) if x>=0 %}
+				<!-- from (length-1)-n*(pageNum-1) where n=num of items per page || to (length-1)-n*pageNum -->
+				<!-- we do if x>=0 because we don't want to show items below 0 -->
+					<div class="post-preview">
+						
+						<h2 class="post-title">
+							{{ blogables[x][1] }}
+						</h2>
+						<h3 class="post-subtitle">
+							{{ blogables[x][2] }}
+						</h3>
+						
+						<p class="post-meta">Posted by <a href="/{{ user }}">{{ user }}</a> on {{ blogables[x][3] }}</p>
+					</div>
+					<hr>
+				{% endfor %}
+				
+                <!-- Pager -->
+				<ul class="pager">
+					{% if pageNum*blogables|length > blogables|length %}
+						<li class="last">
+							<a href="/{{ user }}/{{ pageNum-1 }}">Newer Posts &rarr;</a>
+						</li>
+					{% endif %}
+					{% if pageNum*1 < blogables|length %} <!-- pageNum*n < blogables|length     where n=num of items per page -->
+						<li class="next">
+							<a href="/{{ user }}/{{ pageNum+1 }}">Older Posts &rarr;</a>
+						</li>
+					{% endif %}
+				</ul>
+				
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+{% endblock %}

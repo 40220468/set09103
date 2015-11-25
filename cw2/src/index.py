@@ -62,16 +62,12 @@ def init_db():
 		db = get_db()
 		with app.open_resource('schema.sql', mode='r') as f:
 			db.cursor().executescript(f.read())
-		db.commit()
-
-valid_email = 'sergio894@hotmail.com'
-valid_pwhash = bcrypt.hashpw('password', bcrypt.gensalt())
+			db.commit()
 
 def check_auth(user, password):
 	db = get_db()
 	sql = "SELECT password FROM users WHERE user=?"
 	row = db.cursor().execute(sql, [user]).fetchone()
-	print row
 	if(row is not None):
 		dbPassword = row[0]
 		if(dbPassword == bcrypt.hashpw(password.encode('utf-8'), dbPassword)):
@@ -102,7 +98,6 @@ def root():
 	this_route = url_for('.root')
 	app.logger.info("Logging a test message from "+this_route)
 
-	
 	return render_template('index.html')
 
 @app.route("/login/", methods=['GET','POST'])
@@ -118,6 +113,7 @@ def login():
 				return redirect(url_for('.secret'))
 		else:
 				flash("Incorrect user or password")
+				return render_template('login.html')
 	else:
 		return render_template('login.html')
 	
@@ -131,14 +127,32 @@ def register():
 		email = request.form['InputEmail']
 		pw = request.form['InputPassword']
 		db = get_db()
-		db.cursor().execute('insert into users values ("{user}", "{email}", "{pw}")'.format(user=user, email=email, pw=bcrypt.hashpw(pw, bcrypt.gensalt())))
-		#db.cursor().execute('insert into users values (?, ?, ?)', (user, email, bcrypt.hashpw(pw, bcrypt.gensalt())))
+		#db.cursor().execute('insert into users values ("{user}", "{email}", "{pw}")'.format(user=user, email=email, pw=bcrypt.hashpw(pw, bcrypt.gensalt())))
+		db.cursor().execute('insert into users values (?, ?, ?)', (user, email, bcrypt.hashpw(pw, bcrypt.gensalt())))
 		db.commit()
 		flash("Successful! Now you can login.")
 		return redirect(url_for('root'))
 	else:
 		return render_template('register.html')
 		
+@app.route("/<wantedUser>/")
+@app.route("/<wantedUser>/<int:pageNumber>")
+def loadUserBlog(wantedUser, pageNumber=1):
+	db = get_db()
+	sql = "SELECT * FROM users WHERE user=?"
+	row = db.cursor().execute(sql, [wantedUser]).fetchone()
+	if(row is not None):
+		#db = get_db()
+		#db.cursor().execute('insert into blogables values (?, ?, ?, ?)', ("ser", "titulo2", "mensaje2", "fecha2"))
+		#db.commit()
+		
+		sql = "SELECT * FROM blogables WHERE user=?"
+		rows = db.cursor().execute(sql, [wantedUser]).fetchall()
+		
+		return render_template('userBlog.html', user=wantedUser, blogables=rows, pageNum=pageNumber)
+	else:
+		abort(404)
+
 @app.errorhandler(404)
 def page_not_found(error):
   return render_template('404.html')

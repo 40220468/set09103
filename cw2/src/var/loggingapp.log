@@ -150,3 +150,67 @@ INFO | 2015-11-24 20:06:23,957 | index | login | Logging a test message from /lo
 INFO | 2015-11-24 20:06:29,028 | index | login | Logging a test message from /login/
 INFO | 2015-11-24 20:08:54,255 | index | root | Logging a test message from /
 INFO | 2015-11-24 20:13:37,489 | index | root | Logging a test message from /
+INFO | 2015-11-25 15:39:14,374 | index | root | Logging a test message from /
+INFO | 2015-11-25 15:41:13,363 | index | login | Logging a test message from /login/
+INFO | 2015-11-25 15:41:21,890 | index | login | Logging a test message from /login/
+INFO | 2015-11-25 15:41:31,539 | index | login | Logging a test message from /login/
+INFO | 2015-11-25 15:41:36,502 | index | login | Logging a test message from /login/
+INFO | 2015-11-25 15:42:12,113 | index | login | Logging a test message from /login/
+INFO | 2015-11-25 15:42:18,147 | index | login | Logging a test message from /login/
+INFO | 2015-11-25 15:45:30,881 | index | login | Logging a test message from /login/
+INFO | 2015-11-25 15:45:41,383 | index | login | Logging a test message from /login/
+INFO | 2015-11-25 15:46:47,146 | index | login | Logging a test message from /login/
+INFO | 2015-11-25 15:47:58,386 | index | login | Logging a test message from /login/
+INFO | 2015-11-25 15:48:03,767 | index | login | Logging a test message from /login/
+INFO | 2015-11-25 15:48:03,941 | index | login | Dentro de if login
+INFO | 2015-11-25 15:48:04,171 | index | check_auth | Antes de if de check auth
+INFO | 2015-11-25 15:48:09,094 | index | login | Dentro de else check login
+INFO | 2015-11-25 15:51:59,137 | index | login | Logging a test message from /login/
+INFO | 2015-11-25 15:52:02,544 | index | login | Logging a test message from /login/
+INFO | 2015-11-25 15:52:07,849 | index | login | Logging a test message from /login/
+INFO | 2015-11-25 15:52:07,963 | index | login | Dentro de if login
+INFO | 2015-11-25 15:52:08,177 | index | check_auth | Antes de if de check auth
+INFO | 2015-11-25 15:52:13,032 | index | login | Dentro de else check login
+INFO | 2015-11-25 15:53:02,381 | index | login | Logging a test message from /login/
+INFO | 2015-11-25 15:53:02,471 | index | login | Dentro de if login
+INFO | 2015-11-25 15:53:02,548 | index | check_auth | Antes de if de check auth
+INFO | 2015-11-25 15:53:07,514 | index | login | Dentro de else check login
+INFO | 2015-11-25 15:53:18,068 | index | login | Logging a test message from /login/
+INFO | 2015-11-25 15:53:22,192 | index | login | Logging a test message from /login/
+INFO | 2015-11-25 15:53:22,247 | index | login | Dentro de if login
+INFO | 2015-11-25 15:53:22,298 | index | check_auth | Antes de if de check auth
+INFO | 2015-11-25 15:53:27,403 | index | login | Dentro de else check login
+INFO | 2015-11-25 15:53:36,947 | index | login | Logging a test message from /login/
+INFO | 2015-11-25 15:53:37,005 | index | login | Dentro de if login
+INFO | 2015-11-25 15:53:37,051 | index | check_auth | Antes de if de check auth
+INFO | 2015-11-25 15:53:49,160 | index | login | Logging a test message from /login/
+INFO | 2015-11-25 16:08:18,702 | index | root | Logging a test message from /
+INFO | 2015-11-25 16:08:24,454 | index | root | Logging a test message from /
+INFO | 2015-11-25 16:08:25,648 | index | root | Logging a test message from /
+INFO | 2015-11-25 16:08:26,951 | index | root | Logging a test message from /
+INFO | 2015-11-25 16:08:35,645 | index | root | Logging a test message from /
+INFO | 2015-11-25 16:08:50,570 | index | root | Logging a test message from /
+INFO | 2015-11-25 16:08:52,258 | index | root | Logging a test message from /
+INFO | 2015-11-25 16:09:22,261 | index | root | Logging a test message from /
+INFO | 2015-11-25 16:09:26,008 | index | root | Logging a test message from /
+INFO | 2015-11-25 16:09:33,891 | index | root | Logging a test message from /
+INFO | 2015-11-25 16:09:35,611 | index | root | Logging a test message from /
+INFO | 2015-11-25 16:11:16,336 | index | root | Logging a test message from /
+INFO | 2015-11-25 16:11:17,410 | index | root | Logging a test message from /
+INFO | 2015-11-25 16:13:07,466 | index | root | Logging a test message from /
+INFO | 2015-11-25 16:13:12,265 | index | root | Logging a test message from /
+INFO | 2015-11-25 16:13:14,875 | index | root | Logging a test message from /
+INFO | 2015-11-25 16:13:26,120 | index | root | Logging a test message from /
+INFO | 2015-11-25 16:13:27,792 | index | root | Logging a test message from /
+INFO | 2015-11-25 16:17:59,888 | index | root | Logging a test message from /
+INFO | 2015-11-25 16:19:32,855 | index | root | Logging a test message from /
+INFO | 2015-11-25 16:33:25,114 | index | root | Logging a test message from /
+INFO | 2015-11-25 16:39:31,936 | index | register | Logging a test message from /register/
+INFO | 2015-11-25 16:39:40,895 | index | register | Logging a test message from /register/
+INFO | 2015-11-25 16:39:47,813 | index | root | Logging a test message from /
+INFO | 2015-11-25 16:51:29,444 | index | register | Logging a test message from /register/
+INFO | 2015-11-25 16:51:34,987 | index | register | Logging a test message from /register/
+INFO | 2015-11-25 16:51:41,547 | index | register | Logging a test message from /register/
+INFO | 2015-11-25 16:51:48,121 | index | root | Logging a test message from /
+INFO | 2015-11-25 16:57:00,205 | index | root | Logging a test message from /
+INFO | 2015-11-25 17:36:22,517 | index | root | Logging a test message from /

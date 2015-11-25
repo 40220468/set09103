@@ -5,3 +5,10 @@ CREATE TABLE users (
 	email text,
 	password text
 );
+
+CREATE TABLE blogables (
+	user text,
+	title text,
+	post text,
+	date text
+);

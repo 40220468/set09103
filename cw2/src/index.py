@@ -136,7 +136,7 @@ def register():
 		return render_template('register.html')
 		
 @app.route("/<wantedUser>/")
-@app.route("/<wantedUser>/<int:pageNumber>")
+@app.route("/<wantedUser>/<int:pageNumber>/")
 def loadUserBlog(wantedUser, pageNumber=1):
 	db = get_db()
 	sql = "SELECT * FROM users WHERE user=?"
@@ -152,6 +152,22 @@ def loadUserBlog(wantedUser, pageNumber=1):
 		return render_template('userBlog.html', user=wantedUser, blogables=rows, pageNum=pageNumber)
 	else:
 		abort(404)
+		
+@app.route("/post/", methods=['GET','POST'])
+def post():
+	this_route = url_for('.post')
+	app.logger.info("Logging a test message from "+this_route)
+	
+	if request.method =='POST':
+		title = request.form['InputTitle']
+		post = request.form['InputPost']
+		db = get_db()
+		db.cursor().execute('insert into blogables values (?, ?, ?, ?)', ("ser", title, post, "a day of November"))
+		db.commit()
+		flash("Successful! blogABLE completed!")
+		return redirect(url_for('root'))
+	else:
+		return render_template('post.html')
 
 @app.errorhandler(404)
 def page_not_found(error):

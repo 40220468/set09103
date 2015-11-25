@@ -214,3 +214,17 @@ INFO | 2015-11-25 16:51:41,547 | index | register | Logging a test message from 
 INFO | 2015-11-25 16:51:48,121 | index | root | Logging a test message from /
 INFO | 2015-11-25 16:57:00,205 | index | root | Logging a test message from /
 INFO | 2015-11-25 17:36:22,517 | index | root | Logging a test message from /
+INFO | 2015-11-25 18:03:54,772 | index | root | Logging a test message from /
+INFO | 2015-11-25 18:04:35,894 | index | root | Logging a test message from /
+INFO | 2015-11-25 18:05:06,943 | index | root | Logging a test message from /
+INFO | 2015-11-25 18:05:08,255 | index | loadUserBlog | Logging a test message from favicon.ico
+INFO | 2015-11-25 18:05:10,673 | index | loadUserBlog | Logging a test message from ser
+INFO | 2015-11-25 18:05:11,555 | index | loadUserBlog | Logging a test message from favicon.ico
+INFO | 2015-11-25 18:05:41,658 | index | root | Logging a test message from /
+INFO | 2015-11-25 18:05:42,137 | index | loadUserBlog | Logging a test message from favicon.ico
+INFO | 2015-11-25 18:06:16,343 | index | root | Logging a test message from /
+INFO | 2015-11-25 18:11:47,840 | index | root | Logging a test message from /
+INFO | 2015-11-25 18:11:53,200 | index | post | Logging a test message from /post/
+INFO | 2015-11-25 18:14:07,311 | index | post | Logging a test message from /post/
+INFO | 2015-11-25 18:14:18,716 | index | post | Logging a test message from /post/
+INFO | 2015-11-25 18:14:20,197 | index | root | Logging a test message from /

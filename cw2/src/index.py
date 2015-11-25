@@ -88,17 +88,17 @@ def logout():
 	session ['logged_in'] = False
 	return redirect(url_for('.root'))
 
-@app.route("/secret/")
-@requires_login
-def secret():
-	return "Secret Page"
-
 @app.route("/", methods=['GET','POST'])
-def root():
+@app.route("/<int:pageNumber>/", methods=['GET','POST'])
+def root(pageNumber=1):
 	this_route = url_for('.root')
 	app.logger.info("Logging a test message from "+this_route)
-
-	return render_template('index.html')
+	
+	db = get_db()
+	sql = "SELECT * FROM blogables"
+	rows = db.cursor().execute(sql).fetchall()
+		
+	return render_template('index.html', blogables=rows, pageNum=pageNumber, session=session)
 
 @app.route("/login/", methods=['GET','POST'])
 def login():
@@ -110,12 +110,13 @@ def login():
 		pw = request.form['InputPassword']
 		if check_auth(user, pw):
 				session['logged_in'] = True
-				return redirect(url_for('.secret'))
+				session['name'] = user
+				return redirect(url_for('.root'))
 		else:
 				flash("Incorrect user or password")
-				return render_template('login.html')
+				return render_template('login.html', session=session)
 	else:
-		return render_template('login.html')
+		return render_template('login.html', session=session)
 	
 @app.route("/register/", methods=['GET','POST'])
 def register():
@@ -133,7 +134,7 @@ def register():
 		flash("Successful! Now you can login.")
 		return redirect(url_for('root'))
 	else:
-		return render_template('register.html')
+		return render_template('register.html', session=session)
 		
 @app.route("/<wantedUser>/")
 @app.route("/<wantedUser>/<int:pageNumber>/")
@@ -149,11 +150,12 @@ def loadUserBlog(wantedUser, pageNumber=1):
 		sql = "SELECT * FROM blogables WHERE user=?"
 		rows = db.cursor().execute(sql, [wantedUser]).fetchall()
 		
-		return render_template('userBlog.html', user=wantedUser, blogables=rows, pageNum=pageNumber)
+		return render_template('userBlog.html', user=wantedUser, blogables=rows, pageNum=pageNumber, session=session)
 	else:
 		abort(404)
 		
 @app.route("/post/", methods=['GET','POST'])
+@requires_login
 def post():
 	this_route = url_for('.post')
 	app.logger.info("Logging a test message from "+this_route)
@@ -167,7 +169,7 @@ def post():
 		flash("Successful! blogABLE completed!")
 		return redirect(url_for('root'))
 	else:
-		return render_template('post.html')
+		return render_template('post.html', session=session)
 
 @app.errorhandler(404)
 def page_not_found(error):

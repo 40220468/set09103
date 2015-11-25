@@ -10,7 +10,7 @@
                     <div class="site-heading">
                         <h1>blogABLE</h1>
                         <hr class="small">
-                        <span class="subheading">Every post can be blogABLE</span>
+                        <span class="subheading">In blogABLE, every post that you blogABLE can be blogABLE</span>
                     </div>
                 </div>
             </div>
@@ -23,7 +23,7 @@
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 			
 				<!-- for x in range((blogables|length)-1, -1, -1) %} -->
-				{% for x in range((blogables|length)-1 - 2*(pageNum-1), (blogables|length)-1 - 2*pageNum, -1) if x>=0 %}
+				{% for x in range((blogables|length)-1 - 5*(pageNum-1), (blogables|length)-1 - 5*pageNum, -1) if x>=0 %}
 				<!-- from (length-1)-n*(pageNum-1) where n=num of items per page || to (length-1)-n*pageNum -->
 				<!-- we do if x>=0 because we don't want to show items below 0 -->
 					<div class="post-preview">
@@ -47,7 +47,7 @@
 							<a href="/{{ pageNum-1 }}">Newer Posts &rarr;</a>
 						</li>
 					{% endif %}
-					{% if pageNum*2 < blogables|length %} <!-- pageNum*n < blogables|length     where n=num of items per page -->
+					{% if pageNum*5 < blogables|length %} <!-- pageNum*n < blogables|length     where n=num of items per page -->
 						<li class="next">
 							<a href="/{{ pageNum+1 }}">Older Posts &rarr;</a>
 						</li>

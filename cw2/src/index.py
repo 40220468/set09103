@@ -2,6 +2,7 @@ import ConfigParser
 import bcrypt
 import logging
 import sqlite3
+import datetime
 from flask import Flask, render_template, request, redirect, url_for, abort, session, flash, g
 from functools import wraps
 from logging.handlers import RotatingFileHandler
@@ -131,7 +132,8 @@ def register():
 		#db.cursor().execute('insert into users values ("{user}", "{email}", "{pw}")'.format(user=user, email=email, pw=bcrypt.hashpw(pw, bcrypt.gensalt())))
 		db.cursor().execute('insert into users values (?, ?, ?)', (user, email, bcrypt.hashpw(pw, bcrypt.gensalt())))
 		db.commit()
-		flash("Successful! Now you can login.")
+		session['logged_in'] = True
+		session['name'] = user
 		return redirect(url_for('root'))
 	else:
 		return render_template('register.html', session=session)
@@ -143,10 +145,6 @@ def loadUserBlog(wantedUser, pageNumber=1):
 	sql = "SELECT * FROM users WHERE user=?"
 	row = db.cursor().execute(sql, [wantedUser]).fetchone()
 	if(row is not None):
-		#db = get_db()
-		#db.cursor().execute('insert into blogables values (?, ?, ?, ?)', ("ser", "titulo2", "mensaje2", "fecha2"))
-		#db.commit()
-		
 		sql = "SELECT * FROM blogables WHERE user=?"
 		rows = db.cursor().execute(sql, [wantedUser]).fetchall()
 		
@@ -161,13 +159,15 @@ def post():
 	app.logger.info("Logging a test message from "+this_route)
 	
 	if request.method =='POST':
+		user = session['name']
 		title = request.form['InputTitle']
 		post = request.form['InputPost']
+		date = datetime.datetime.now().date()
 		db = get_db()
-		db.cursor().execute('insert into blogables values (?, ?, ?, ?)', ("ser", title, post, "a day of November"))
+		db.cursor().execute('insert into blogables values (?, ?, ?, ?)', (user, title, post, date))
 		db.commit()
 		flash("Successful! blogABLE completed!")
-		return redirect(url_for('root'))
+		return redirect(url_for('loadUserBlog', wantedUser=user))
 	else:
 		return render_template('post.html', session=session)
 

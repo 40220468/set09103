@@ -22,8 +22,22 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 			
+				<!-- Flash message because of a new post just posted -->
+				{% with messages = get_flashed_messages () %}
+					{% if messages %}
+						<ul>
+							{% for message in messages %}
+								<center><h4>{{ message | safe }} </h4></center>
+							{% endfor %}
+						</ul>
+						<br>
+					{% endif %}
+				{% endwith %}
+				
+				<hr>
+			
 				<!-- for x in range((blogables|length)-1, -1, -1) %} -->
-				{% for x in range((blogables|length)-1 - 1*(pageNum-1), (blogables|length)-1 - 1*pageNum, -1) if x>=0 %}
+				{% for x in range((blogables|length)-1 - 2*(pageNum-1), (blogables|length)-1 - 2*pageNum, -1) if x>=0 %}
 				<!-- from (length-1)-n*(pageNum-1) where n=num of items per page || to (length-1)-n*pageNum -->
 				<!-- we do if x>=0 because we don't want to show items below 0 -->
 					<div class="post-preview">
@@ -47,7 +61,7 @@
 							<a href="/{{ user }}/{{ pageNum-1 }}">Newer Posts &rarr;</a>
 						</li>
 					{% endif %}
-					{% if pageNum*1 < blogables|length %} <!-- pageNum*n < blogables|length     where n=num of items per page -->
+					{% if pageNum*2 < blogables|length %} <!-- pageNum*n < blogables|length     where n=num of items per page -->
 						<li class="next">
 							<a href="/{{ user }}/{{ pageNum+1 }}">Older Posts &rarr;</a>
 						</li>

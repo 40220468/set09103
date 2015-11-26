@@ -34,6 +34,13 @@
 					{% endif %}
 				{% endwith %}
 				
+				{% if (blogables|length) == 0 %}
+					<ul>
+						<center><h4> Post your first blogABLE by clicking on Post! </h4></center>						
+					</ul>
+					<br>
+				{% endif %}
+				
 				<hr>
 			
 				<!-- for x in range((blogables|length)-1, -1, -1) %} -->

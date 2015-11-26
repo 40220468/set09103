@@ -6,6 +6,8 @@ CREATE TABLE users (
 	password text
 );
 
+DROP TABLE if EXISTS blogables;
+
 CREATE TABLE blogables (
 	user text,
 	title text,

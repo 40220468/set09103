@@ -21,7 +21,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-			
+				<hr>
 				<!-- for x in range((blogables|length)-1, -1, -1) %} -->
 				{% for x in range((blogables|length)-1 - 5*(pageNum-1), (blogables|length)-1 - 5*pageNum, -1) if x>=0 %}
 				<!-- from (length-1)-n*(pageNum-1) where n=num of items per page || to (length-1)-n*pageNum -->

@@ -134,7 +134,7 @@ def register():
 		db.commit()
 		session['logged_in'] = True
 		session['name'] = user
-		return redirect(url_for('root'))
+		return redirect(url_for('loadUserBlog', wantedUser=user))
 	else:
 		return render_template('register.html', session=session)
 		

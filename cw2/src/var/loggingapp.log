@@ -449,3 +449,11 @@ INFO | 2015-11-26 16:41:10,747 | index | root | Logging a test message from /
 INFO | 2015-11-26 16:41:24,968 | index | register | Logging a test message from /register/
 INFO | 2015-11-26 16:41:35,993 | index | register | Logging a test message from /register/
 INFO | 2015-11-26 16:42:05,433 | index | register | Logging a test message from /register/
+INFO | 2015-11-26 16:47:21,607 | index | root | Logging a test message from /
+INFO | 2015-11-26 16:49:57,502 | index | root | Logging a test message from /
+INFO | 2015-11-26 16:50:22,473 | index | root | Logging a test message from /
+INFO | 2015-11-26 17:43:49,487 | index | root | Logging a test message from /
+INFO | 2015-11-26 17:44:02,832 | index | root | Logging a test message from /
+INFO | 2015-11-26 18:55:49,500 | index | root | Logging a test message from /
+INFO | 2015-11-26 19:22:07,504 | index | root | Logging a test message from /
+INFO | 2015-11-26 19:41:49,704 | index | root | Logging a test message from /

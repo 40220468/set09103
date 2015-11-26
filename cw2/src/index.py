@@ -129,12 +129,19 @@ def register():
 		email = request.form['InputEmail']
 		pw = request.form['InputPassword']
 		db = get_db()
-		#db.cursor().execute('insert into users values ("{user}", "{email}", "{pw}")'.format(user=user, email=email, pw=bcrypt.hashpw(pw, bcrypt.gensalt())))
-		db.cursor().execute('insert into users values (?, ?, ?)', (user, email, bcrypt.hashpw(pw, bcrypt.gensalt())))
-		db.commit()
-		session['logged_in'] = True
-		session['name'] = user
-		return redirect(url_for('loadUserBlog', wantedUser=user))
+		
+		sql = "SELECT * FROM users WHERE user=?"
+		row = db.cursor().execute(sql, [user]).fetchone()
+		if(row is None):
+			#db.cursor().execute('insert into users values ("{user}", "{email}", "{pw}")'.format(user=user, email=email, pw=bcrypt.hashpw(pw, bcrypt.gensalt())))
+			db.cursor().execute('insert into users values (?, ?, ?)', (user, email, bcrypt.hashpw(pw, bcrypt.gensalt())))
+			db.commit()
+			session['logged_in'] = True
+			session['name'] = user
+			return redirect(url_for('loadUserBlog', wantedUser=user))
+		else:
+			flash("User already exists")
+			return render_template('register.html', session=session)
 	else:
 		return render_template('register.html', session=session)
 		

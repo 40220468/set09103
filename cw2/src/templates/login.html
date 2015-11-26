@@ -21,6 +21,19 @@
    <div class="container">
 		<div class="row">
 			<div class="col-sm-6 col-sm-offset-3 form-box">
+			
+				<!-- Flash message because of wrong login -->
+				{% with messages = get_flashed_messages () %}
+					{% if messages %}
+						<ul>
+							{% for message in messages %}
+								<center><h4>{{ message | safe }} </h4></center>
+							{% endfor %}
+						</ul>
+						<hr>
+					{% endif %}
+				{% endwith %}
+			
 				<form name="register_form" action ="" method ="post">
 					<div class="well well-sm"><strong><span class="glyphicon glyphicon-asterisk"></span>Required Field</strong></div>
 					<div class="form-group">
@@ -40,15 +53,7 @@
 					<button type="submit" name="submit" id="submit" value="Login" class="btn btn-info pull-right"> 
 						Login
 					</button>
-					{% with messages = get_flashed_messages () %}
-						{% if messages %}
-							<ul>
-								{% for message in messages %}
-									<li>{{ message | safe }} </li>
-								{% endfor %}
-							</ul>
-						{% endif %}
-					{% endwith %}
+					
 				</form> 
 			</div>
 		</div>
